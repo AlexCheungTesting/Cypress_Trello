@@ -36,5 +36,13 @@ Then("I should be logged in as {word} {word}", (message, message2) => {
 })
 
 Then("I should see the following error message There isn't an account for this email", () => {
-    cy.get('#error > .error-message').should('have.text', "Er is geen account voor dit e-mailadres" )
-})
+    const options = [
+        "There isn't an account for this email",
+        "Er is geen account voor dit e-mailadres"
+      ];
+    
+      cy.get('#error > .error-message').should('be.visible').should(($element) => {
+        const text = $element.text();
+        expect(options).to.include(text);
+      });
+    });
