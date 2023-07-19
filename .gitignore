@@ -1,0 +1,5 @@
+node_modules
+zz-1-getting-started
+zz-2-advanced-examples
+package-lock.json
+cypress/videos/*
