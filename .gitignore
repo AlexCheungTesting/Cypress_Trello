@@ -5,5 +5,7 @@ package-lock.json
 cypress/videos/*
 cypress/screenshots/*
 cypress/fixtures/*
+cypress/results/*
 app/*
 mochawesome-report
+mochawesome.json
