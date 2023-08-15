@@ -4,14 +4,15 @@
   "description": "Cypress Automation Framework",
   "main": "index.js",
   "scripts": {
-    "APITests-TST": "npx cypress run --spec cypress/e2e/Trello/API-Tests/features/*.feature || true",
+    "APITests-TST": "npx cypress run --spec cypress/e2e/Trello/API-Tests/workFlows/**/*.js || true",
     "UITests-TST": "npx cypress run --spec cypress/e2e/Trello/UI-Tests/features/*.feature",
     "junit-merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/results.xml",
     "delete-junit-report": "rm -rf cypress/results/junit/results.xml",
     "delete-results": "rm -rf cypress/results/* || true",
     "mochawesome-merge": "npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json",
     "delete-mochawesome-report": "rm -rf mochawesome-report/*  ||true",
-    "cypress-UI-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run UITests-TST"
+    "cypress-UI-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run UITests-TST && npm run mochawesome-merge",
+    "cypress-API-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run APITests-TST && npm run mochawesome-merge"
   },
   "author": "Alex Cheung",
   "license": "ISC",
