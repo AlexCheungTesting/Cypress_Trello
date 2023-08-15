@@ -8,4 +8,4 @@ cypress/fixtures/*
 cypress/results/*
 app/*
 mochawesome-report
-/mochawesome.json
+mochawesome/
