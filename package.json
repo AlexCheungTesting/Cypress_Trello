@@ -9,10 +9,11 @@
     "junit-merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/results.xml",
     "delete-junit-report": "rm -rf cypress/results/junit/results.xml",
     "delete-results": "rm -rf cypress/results/* || true",
+    "delete-mochawesome.json": "rm -rf mochawesome.json || true",
     "mochawesome-merge": "npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json",
     "delete-mochawesome-report": "rm -rf mochawesome-report/*  ||true",
-    "cypress-UI-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run UITests-TST && npm run mochawesome-merge",
-    "cypress-API-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run APITests-TST && npm run mochawesome-merge"
+    "cypress-UI-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run UITests-TST && npm run mochawesome-merge && npm run delete-mochawesome.json",
+    "cypress-API-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run APITests-TST && npm run mochawesome-merge && npm run delete-mochawesome.json"
   },
   "author": "Alex Cheung",
   "license": "ISC",
