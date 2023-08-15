@@ -1,0 +1,203 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 5,
+    "pending": 1,
+    "failures": 0,
+    "testsRegistered": 6,
+    "passPercent": 83.33333333333333,
+    "pendingPercent": 16.666666666666668,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2023-08-15T18:32:51.944Z",
+    "end": "2023-08-15T18:32:55.373Z",
+    "duration": 3429
+  },
+  "results": [
+    {
+      "uuid": "6233711a-30e0-4c7c-998e-46cd8be3c5a5",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Trello\\API-Tests\\workFlows\\happyflow_e2e.js",
+      "file": "cypress\\e2e\\Trello\\API-Tests\\workFlows\\happyflow_e2e.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d62668b5-3458-48a0-b891-9bd43d524015",
+          "title": "Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create a new board",
+              "fullTitle": "Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board Create a new board",
+              "timedOut": null,
+              "duration": 865,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: \"Post\",\n  url: baseURL + boardPath,\n  qs: {\n    key: authKey,\n    token: authToken,\n    name: \"My board name \" + randomNumber,\n    defaultLists: \"false\"\n  }\n}).then(function (resp) {\n  //Variabelen uit respons exporteren\n  var value = resp.body.id;\n  boardId.push(value);\n  //Assertions\n  expect(resp.status).to.eq(200);\n  console.log(randomNumber);\n  return value;\n});\ncy.log(boardId);",
+              "err": {},
+              "uuid": "affc3c4f-5a42-46eb-9e9d-4fbcee9bc03a",
+              "parentUUID": "d62668b5-3458-48a0-b891-9bd43d524015",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "create doneList on new board",
+              "fullTitle": "Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board create doneList on new board",
+              "timedOut": null,
+              "duration": 412,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: \"Post\",\n  url: baseURL + boardPath + boardId + \"/lists\",\n  qs: {\n    key: authKey,\n    token: authToken,\n    name: \"Done\"\n  }\n}).then(function (resp) {\n  //Variabelen uit response exporteren\n  var value = resp.body.id;\n  doneListId.push(value);\n  //Assertions\n  expect(resp.status).to.eq(200);\n  return value;\n});\ncy.log(doneListId);",
+              "err": {},
+              "uuid": "4635aa83-7003-49f4-8226-b1d3317b1f4e",
+              "parentUUID": "d62668b5-3458-48a0-b891-9bd43d524015",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "create toDoList on new board",
+              "fullTitle": "Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board create toDoList on new board",
+              "timedOut": null,
+              "duration": 377,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: \"Post\",\n  url: baseURL + boardPath + boardId + \"/lists\",\n  qs: {\n    key: authKey,\n    token: authToken,\n    name: \"To Do\"\n  }\n}).then(function (resp) {\n  //Variabelen uit response exporteren\n  var value = resp.body.id;\n  toDoListId.push(value);\n  //Assertions\n  expect(resp.status).to.eq(200);\n  return value;\n});\ncy.log(toDoListId);",
+              "err": {},
+              "uuid": "46c1600c-5850-4dad-8d4a-528e80fc2d14",
+              "parentUUID": "d62668b5-3458-48a0-b891-9bd43d524015",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "create card on toDoList ",
+              "fullTitle": "Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board create card on toDoList ",
+              "timedOut": null,
+              "duration": 493,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: \"Post\",\n  url: baseURL + cardPath,\n  qs: {\n    key: authKey,\n    token: authToken,\n    name: \"My card Nr \" + randomNumber,\n    idList: toDoListId\n  }\n}).then(function (resp) {\n  //Variabelen uit response exporteren\n  var value = resp.body.id;\n  cardId.push(value);\n  //Assertions\n  expect(resp.status).to.eq(200);\n  return value;\n});\ncy.log(cardId);",
+              "err": {},
+              "uuid": "113461d7-6abe-44c8-b042-d7193c57684e",
+              "parentUUID": "d62668b5-3458-48a0-b891-9bd43d524015",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "upload attachment to card",
+              "fullTitle": "Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board upload attachment to card",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "//file location\nvar filePath = \"documents/note.xml\";\n//set file as binary\ncy.fixture(filePath, \"binary\").then(function (fileBin) {\n  return Cypress.Blob.binaryStringToBlob(fileBin, \"application/xml\");\n}).then(function (blob) {\n  cy.request({\n    method: \"Post\",\n    url: baseURL + cardPath,\n    qs: {\n      key: authKey,\n      token: authToken,\n      setCover: true,\n      mimeType: \"application/xml\",\n      id: cardId\n    },\n    body: blob,\n    failOnStatusCode: false\n  }).then(function (resp) {\n    //Assertions\n    expect(resp.status).to.eq(200);\n    return value;\n  });\n});",
+              "err": {},
+              "uuid": "b731cddd-9d87-4175-8183-ab5c877ed13d",
+              "parentUUID": "d62668b5-3458-48a0-b891-9bd43d524015",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Delete board ",
+              "fullTitle": "Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board Delete board ",
+              "timedOut": null,
+              "duration": 1208,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: \"Delete\",\n  url: baseURL + boardPath + boardId,\n  qs: {\n    key: authKey,\n    token: authToken\n  }\n});",
+              "err": {},
+              "uuid": "58bda5ed-945f-443f-8a99-b2c77b0ac877",
+              "parentUUID": "d62668b5-3458-48a0-b891-9bd43d524015",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "affc3c4f-5a42-46eb-9e9d-4fbcee9bc03a",
+            "4635aa83-7003-49f4-8226-b1d3317b1f4e",
+            "46c1600c-5850-4dad-8d4a-528e80fc2d14",
+            "113461d7-6abe-44c8-b042-d7193c57684e",
+            "58bda5ed-945f-443f-8a99-b2c77b0ac877"
+          ],
+          "failures": [],
+          "pending": [
+            "b731cddd-9d87-4175-8183-ab5c877ed13d"
+          ],
+          "skipped": [],
+          "duration": 3355,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/mochawesome",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
