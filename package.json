@@ -18,6 +18,7 @@
   "author": "Alex Cheung",
   "license": "ISC",
   "devDependencies": {
+    "@cypress/skip-test": "^2.6.1",
     "cypress": "^12.2.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-multi-reporters": "^1.6.3",

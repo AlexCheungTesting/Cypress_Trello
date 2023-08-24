@@ -1,0 +1,9 @@
+{
+"baseUrl": "https://api.trello.com",
+"env":{
+    "urlHost": "https://api.trello.com",
+    "boardPath" : "/1/boards/",
+    "env": "local"
+}
+
+}
