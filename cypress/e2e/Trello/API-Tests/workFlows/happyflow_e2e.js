@@ -2,7 +2,7 @@
 import { onlyOn, skipOn } from '@cypress/skip-test'
 let authKey = "cb2730b521f0d954c7c89de64ce57f20"
 let authToken = "ATTA28b16d3d0df95e7256601b9f3da8bd7e92174fc2ff5cba9b8bfac6957490477402555BCF"
-let baseURL = Cypress.env("baseUrl")
+let baseUrl = Cypress.env("baseUrl")
 let getPath = "/1/members/me/boards"
 let boardPath = Cypress.env("boardPath")
 let cardPath = "/1/cards"
@@ -13,6 +13,7 @@ let toDoListId = []
 let cardId = []
 let local = Cypress.env("env")
 let urlHost = Cypress.env("urlHost")
+let delPath = "/1/boards/"
 
 describe('Create new board, toDoList, doneList,card on toDoList, upload file to card & move card to doneList & delete card & board', () => {
     it('Create a new board', () => {
@@ -82,27 +83,18 @@ describe('Create new board, toDoList, doneList,card on toDoList, upload file to 
         cy.log(toDoListId)
     });
 
-    
-        it('create card on toDoList ', () => {
-            cy.skipOn(local, () => {
-            cy.request({
-                method: "Post",
-                url:
-                    urlHost + cardPath,
-                qs: {
-                    key: authKey,
-                    token: authToken,
-                    name: "My card Nr " + randomNumber,
-                    idList: toDoListId
-                }
-            }).then((resp) => {
-                //Variabelen uit response exporteren
-                const value = resp.body.id
-                cardId.push(value)
-                //Assertions
-                expect(resp.status).to.eq(200)
-                return value
-            });
+
+    it('create card on toDoList ', () => {
+        onlyOn('local', () => {
+            cy.createCardOnToDoList(urlHost, cardPath, authKey, authToken, randomNumber, toDoListId)
+                .then((resp) => {
+                    //Variabelen uit response exporteren
+                    const value = resp.body.id
+                    cardId.push(value)
+                    //Assertions
+                    expect(resp.status).to.eq(200)
+                    return value
+                });
             cy.log(cardId)
         });
     })
@@ -138,16 +130,8 @@ describe('Create new board, toDoList, doneList,card on toDoList, upload file to 
     });
 
 
-    it.skip("Delete board ", () => {
-        cy.request({
-            method: "Delete",
-            url:
-                urlHost + boardPath + boardId,
-            qs: {
-                key: authKey,
-                token: authToken
-            }
-        })
+    it("Delete board ", () => {
+        cy.deleteBoard(urlHost, boardPath, boardId, authKey, authToken)
     })
 });
 

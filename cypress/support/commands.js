@@ -20,6 +20,35 @@
 // -- This is a dual command --
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
 //
+Cypress.Commands.add("createCardOnToDoList",
+    (urlHost, cardPath, authKey, authToken, randomNumber, toDoListId) => {
+        cy.request({
+            method: "Post",
+            url:
+                urlHost + cardPath,
+            qs: {
+                key: authKey,
+                token: authToken,
+                name: "My card Nr " + randomNumber,
+                idList: toDoListId
+            }
+        })
+    })
+
+Cypress.Commands.add("deleteBoard",
+    (urlHost, boardPath, boardId, authKey, authToken) => {
+        cy.request({
+            method: "Delete",
+            url:
+                urlHost + boardPath + boardId,
+            qs: {
+                key: authKey,
+                token: authToken
+            }
+        })
+    })
+
+
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
