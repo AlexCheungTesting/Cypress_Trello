@@ -2,7 +2,10 @@
 "baseUrl": "https://api.trello.com",
 "env":{
     "urlHost": "https://api.trello.com",
+    "authKey": "cb2730b521f0d954c7c89de64ce57f20",
+    "authToken": "ATTA28b16d3d0df95e7256601b9f3da8bd7e92174fc2ff5cba9b8bfac6957490477402555BCF",
     "boardPath" : "/1/boards/",
+    "listPath": "/lists",
     "ENVIRONMENT": "local"
 }
 

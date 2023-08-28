@@ -20,6 +20,48 @@
 // -- This is a dual command --
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
 //
+Cypress.Commands.add("createBoard",
+    (urlHost, boardPath, authKey, authToken, randomNumber) => {
+        cy.request({
+            method: "Post",
+            url:
+                urlHost + boardPath,
+            qs: {
+                key: authKey,
+                token: authToken,
+                name: "My board name " + randomNumber,
+                defaultLists: "false"
+            }
+        })
+    })
+
+Cypress.Commands.add("createDoneList",
+    (urlHost, boardPath, authKey, authToken, boardId, listPath) => {
+        cy.request({
+            method: "Post",
+            url:
+                urlHost + boardPath + boardId + listPath,
+            qs: {
+                key: authKey,
+                token: authToken,
+                name: "Done"
+            }
+        })
+    })
+
+Cypress.Commands.add("createToDoList",
+    (urlHost, boardPath, authKey, authToken, boardId, listPath) => {
+        cy.request({
+            method: "Post",
+            url:
+                urlHost + boardPath + boardId + listPath,
+            qs: {
+                key: authKey,
+                token: authToken,
+                name: "To Do"
+            }
+        })
+    })
 Cypress.Commands.add("createCardOnToDoList",
     (urlHost, cardPath, authKey, authToken, randomNumber, toDoListId) => {
         cy.request({
